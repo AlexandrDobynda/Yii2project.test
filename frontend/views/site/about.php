@@ -2,8 +2,11 @@
 
 /* @var $this yii\web\View */
 
+
 use yii\helpers\Html;
 use common\models\Producers;
+use common\models\Film;
+
 
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
@@ -12,15 +15,26 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1>
 <!--        --><?//= Html::encode($this->title) ?><!--!!!-->
         <b>Продюссеры:</b>
-        <ul>
-            <? $produsers = Producers::findAll([
-                    'id' => 1,2,3
-            ]);?>
-            <? foreach ($produsers as $produser){ ?>
-                <li><b><?=$produser->producer_name?></b></li>
-            <? } ?>
 
-        </ul>
+            <?
+
+                $produsers = Producers::findOne(3);
+
+                $films = $produsers->getFilm()
+                ->where(['like', 'film_name', 'остров'])
+                ->asArray()
+                ->all();
+
+
+
+
+
+
+            ;?>
+
+            <?php             print_r($films) ?>
+
+
     </h1>
 
 

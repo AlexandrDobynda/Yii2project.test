@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 
+
 /**
  * This is the model class for table "producers".
  *
@@ -40,5 +41,14 @@ class Producers extends \yii\db\ActiveRecord
             'id' => 'ID',
             'producer_name' => 'Producer Name',
         ];
+    }
+
+    /**
+     *
+     */
+    public function getFilm()
+    {
+        return $this->hasMany(Film::className(), ['producer_id' => 'id']);
+
     }
 }

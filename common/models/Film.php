@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 
+
 /**
  * This is the model class for table "film".
  *
@@ -47,4 +48,15 @@ class Film extends \yii\db\ActiveRecord
             'year' => 'Year',
         ];
     }
+
+    /**
+     * One-to-many
+     */
+
+    public function getProducers()
+    {
+        return $this->hasOne(Producers::className(), ['id' => 'producer_id']);
+
+    }
+
 }
