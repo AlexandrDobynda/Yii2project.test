@@ -1,0 +1,4 @@
+actor: Front
+modules:
+    enabled:
+        - \Helper\Frontend
