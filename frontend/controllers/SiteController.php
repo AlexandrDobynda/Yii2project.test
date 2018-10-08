@@ -240,4 +240,10 @@ class SiteController extends Controller
             return $this->render('entry', ['model' => $model]);
         }
     }
+
+    public function actionRequest()
+    {
+        return $this->render('request');
+    }
+
 }
