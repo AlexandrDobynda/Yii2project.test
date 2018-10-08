@@ -13,33 +13,26 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
     <h1>
-<!--        --><?//= Html::encode($this->title) ?><!--!!!-->
-        <b>Продюссеры:</b>
 
-            <?
+        <? $producers = Producers::find()
+            ->select('producer_name')
+            ->leftJoin('film', '`film`.`producer_id` = `producers`.`id`')
+            ->groupBy('film.producer_id')
+            ->andFilterHaving(['>', 'count(film.producer_id)', 1])
+            ->asArray()
+            ->all(); ?>
 
-                $produsers = Producers::findOne(3);
-
-                $films = $produsers->getFilm()
-                ->where(['like', 'film_name', 'остров'])
-                ->asArray()
-                ->all();
-
+        <b>Продюссеры у которых больше 2 фильмов:</b><br>
 
 
-
-
-
-            ;?>
-
-            <?php             print_r($films) ?>
+        <?php print_r($producers) ?>
 
 
     </h1>
 
 
-<!---->
-<!--    <p>This is the About page. You may modify the following file to customize its content:</p>-->
-<!---->
-<!--    <code>--><?//= __FILE__ ?><!--</code>-->
+    <!---->
+    <!--    <p>This is the About page. You may modify the following file to customize its content:</p>-->
+    <!---->
+    <!--    <code>--><? //= __FILE__ ?><!--</code>-->
 </div>
