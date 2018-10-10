@@ -49,6 +49,8 @@ class ProducersCest
         $I->see('sdadasdasd');
         $I->seeLink('Update');
         $I->seeLink('Delete');
+        $I->amOnRoute('producers/index');
+        $I->see('sdadasdasd');
     }
 
     public function checkUpdateProducers(FunctionalTester $I)
@@ -71,13 +73,14 @@ class ProducersCest
 
         $I->click('Update');
         $I->see('Update Producers', 'h1');
-        $I->fillField('Producer Name', 'fffffff');
+        $I->fillField('Producer Name', 'kkkk');
         $I->click('Save');
-        $I->see('fffffff');
+        $I->see('kkkk');
         $I->dontSee('Питер Джексон');
 
-        $I->amOnPage('producers');
+        $I->amOnRoute('producers/index');
         $I->dontSee('Питер Джексон');
+        $I->see('kkkk');
 
     }
 
@@ -89,9 +92,10 @@ class ProducersCest
         $I->see('Питер Джексон');
         $I->click('Delete');
 
-        $I->amOnPage('producers');
+        $I->amOnPage('producers/index');
 
         $I->dontSee('Питер Джексон');
+
 
 
     }
