@@ -63,4 +63,21 @@ class ProducersCest
         $I->see('fffffff');
 
     }
+
+    public function checkUpdateProducer1(FunctionalTester $I)
+    {
+        $I->amOnPage('producers/view?id=1');
+        $I->see('Питер Джексон');
+
+        $I->click('Update');
+        $I->see('Update Producers', 'h1');
+        $I->fillField('Producer Name', 'fffffff');
+        $I->click('Save');
+        $I->see('fffffff');
+        $I->dontSee('Питер Джексон');
+
+        $I->amOnPage('producers');
+        $I->dontSee('Питер Джексон');
+
+    }
 }

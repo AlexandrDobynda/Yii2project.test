@@ -82,19 +82,22 @@ class FilmCest
 
     }
 
-//    public function checkDeleteFilm(FunctionalTester $I)
-//    {
-//        $I->amOnPage('film/create');
-//        $I->fillField('Film Name', 'sdadasdasd');
-//        $I->fillField('Producer ID', 1111);
-//        $I->fillField('Year', 4123213);
-//        $I->click('Save');
-//        $I->click('Delete');
-//
+    public function checkDeleteFilm(FunctionalTester $I)
+    {
+        $I->amOnPage('film/view?id=1');
+
+        $I->seeLink('Update');
+        $I->seeLink('Delete');
+        $I->see('Назад в будущее');
+        $I->click('Delete');
+
+
+//        $i->seeElement('.alert-error');
+//        $I->wait(1);
 //        $I->see('Are you sure you want to delete this item?', '.help-block');
-//
-//
-//    }
+
+
+    }
 
 
 
