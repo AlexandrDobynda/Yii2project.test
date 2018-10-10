@@ -80,4 +80,19 @@ class ProducersCest
         $I->dontSee('Питер Джексон');
 
     }
+
+    public function checkDeleteProducer(FunctionalTester $I)
+    {
+        $I->amOnPage('producers/view?id=1');
+        $I->seeLink('Update');
+        $I->seeLink('Delete');
+        $I->see('Питер Джексон');
+        $I->click('Delete');
+
+        $I->amOnPage('producers');
+
+        $I->dontSee('Питер Джексон');
+
+
+    }
 }
