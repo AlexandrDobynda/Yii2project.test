@@ -23,13 +23,16 @@ $this->params['breadcrumbs'][] = $this->title;
             ->all();
 
 
-        $film = Film::find()->asArray()->all();?>
+        $film = Film::find()->asArray()->all();
+        $producerss = Producers::find()->asArray()->all();?>
 
         <b>Продюссеры у которых больше 2 фильмов:</b><br>
 
 
         <pre><?php var_export($producers); ?></pre>
         <pre><?php var_export($film); ?></pre>
+        <pre><?php var_export($producerss); ?></pre>
+
 
 
     </h1>

@@ -3,7 +3,7 @@ use frontend\tests\FunctionalTester;
 
 class FilmGenreCest
 {
-    public function checkOpen(FunctionalTester $I)
+    public function checkOpenFilmGenresPage(FunctionalTester $I)
     {
         $I->amOnPage('film-genre');
         $I->see('Film Genres', 'h1');

@@ -6,7 +6,7 @@ use frontend\tests\FunctionalTester;
 
 class GenresCest
 {
-    public function checkOpen(FunctionalTester $I)
+    public function checkOpenGenresPage(FunctionalTester $I)
     {
         $I->amOnPage('genres');
         $I->see('Genres', 'h1');

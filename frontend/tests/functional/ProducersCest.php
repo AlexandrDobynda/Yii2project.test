@@ -1,15 +1,28 @@
 <?php namespace frontend\tests\functional;
+
+use frontend\tests\fixtures\ProducersFixture;
 use frontend\tests\FunctionalTester;
+
 
 class ProducersCest
 {
-    public function checkOpen(FunctionalTester $I)
+
+    public function _fixtures()
+    {
+        return ['producers' => ProducersFixture::className()];
+    }
+
+    public function checkOpenProducersPage(FunctionalTester $I)
     {
         $I->amOnPage('producers');
         $I->see('Producers', 'h1');
         $I->seeLink('Create Producers');
         $I->seeLink('ID');
         $I->seeLink('Producer Name');
+
+        $I->see('Питер Джексон');
+        $I->see('Андрес Мускетти');
+        $I->see('Мартин Скорсезе');
 
     }
 

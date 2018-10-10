@@ -3,13 +3,20 @@
 namespace frontend\tests\functional;
 
 use frontend\tests\FunctionalTester;
+use frontend\tests\fixtures\FilmFixture;
 
 class FilmCest
 {
 
-
-    public function checkOpen(FunctionalTester $I)
+    public function _fixtures()
     {
+        return ['films' => FilmFixture::className()];
+    }
+
+
+    public function checkOpenFilmPage(FunctionalTester $I)
+    {
+
         $I->amOnPage('film');
         $I->see('Films', 'h1');
         $I->seeLink('Create Film');
@@ -17,6 +24,11 @@ class FilmCest
         $I->seeLink('Film Name');
         $I->seeLink('Producer ID');
         $I->seeLink('Year');
+
+
+        $I->see('Назад в будущее');
+        $I->see('Бегущий по лезвию 2049');
+        $I->see('Остров проклятых');
 
     }
 
