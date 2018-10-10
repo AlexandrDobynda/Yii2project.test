@@ -20,12 +20,16 @@ $this->params['breadcrumbs'][] = $this->title;
             ->groupBy('film.producer_id')
             ->andFilterHaving(['>', 'count(film.producer_id)', 1])
             ->asArray()
-            ->all(); ?>
+            ->all();
+
+
+        $film = Film::find()->asArray()->all();?>
 
         <b>Продюссеры у которых больше 2 фильмов:</b><br>
 
 
-        <?php print_r($producers) ?>
+        <pre><?php var_export($producers); ?></pre>
+        <pre><?php var_export($film); ?></pre>
 
 
     </h1>

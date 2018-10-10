@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <b>Продюссеры у которых больше 2 фильмов:</b><br>
 
 
-    <?php print_r($producers) ?>
+    <pre><?php var_export($producers); ?></pre>
 
 
 </h1>
