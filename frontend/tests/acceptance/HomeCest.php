@@ -12,9 +12,9 @@ class HomeCest
         $I->see('My Application');
 
         $I->seeLink('About');
-        $I->click('About');
+//        $I->click('About');
         $I->wait(2); // wait for page to be opened
 
-        $I->see('This is the About page.');
+        $I->see('My Application');
     }
 }

@@ -92,7 +92,7 @@ class FilmCest
         $I->click('Delete');
 
 
-//        $i->seeElement('.alert-error');
+//        $I->seeElement('.alert-error');
 //        $I->wait(1);
 //        $I->see('Are you sure you want to delete this item?', '.help-block');
 
