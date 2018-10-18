@@ -3,11 +3,32 @@
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
+
+$userId = Yii::$app->user->identity->id;
+$cookies = Yii::$app->request->cookies;
+
+if (!isset($cookies['count' . $userId])) {
+    $cookies = Yii::$app->response->cookies;
+    $cookies->add(new \yii\web\Cookie([
+        'name' => 'count' . $userId,
+        'value' => 1,
+    ]));
+    $counter = $cookies->getValue('count' . $userId);
+
+} else {
+    $counter = $cookies->getValue('count' . $userId) + 1;
+    $cookies = Yii::$app->response->cookies;
+    $cookies->add(new \yii\web\Cookie([
+        'name' => 'count' . $userId,
+        'value' => $counter,
+    ]));
+}
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+
+        <h1>You visited this page <?=$counter?> times.</h1> <br/>
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
 

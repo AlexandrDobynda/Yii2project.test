@@ -5,7 +5,7 @@
 
 use yii\helpers\Html;
 use common\models\Producers;
-use common\models\Film;
+
 
 
 $this->title = 'About';
@@ -20,18 +20,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ->groupBy('film.producer_id')
             ->andFilterHaving(['>', 'count(film.producer_id)', 1])
             ->asArray()
-            ->all();
-
-
-        $film = Film::find()->asArray()->all();
-        $producerss = Producers::find()->asArray()->all();?>
+            ->all();?>
 
         <b>Продюссеры у которых больше 2 фильмов:</b><br>
 
 
         <pre><?php var_export($producers); ?></pre>
-        <pre><?php var_export($film); ?></pre>
-        <pre><?php var_export($producerss); ?></pre>
+
 
 
 
