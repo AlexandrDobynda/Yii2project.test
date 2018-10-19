@@ -7,8 +7,6 @@ use yii\db\Migration;
  */
 class m181002_202231_create_film extends Migration
 {
-
-
     /**
      *
      * {@inheritdoc}
