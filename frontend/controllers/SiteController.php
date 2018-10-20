@@ -1,7 +1,10 @@
 <?php
 namespace frontend\controllers;
 
+
+use common\models\User;
 use Yii;
+use yii\base\Event;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -14,6 +17,8 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 
 use common\models\EntryForm;
+use yii\web\UserEvent;
+
 
 /**
  * Site controller
@@ -80,8 +85,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-
-
         return $this->render('index');
     }
 
@@ -92,6 +95,18 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+
+
+        Event::on(\yii\web\User::className(), \yii\web\User::EVENT_AFTER_LOGIN, function (){
+
+//            $user = User::findOne(Yii::$app->user->getId());
+            $user = User::findOne(1);
+            $user->lastLogin = time();
+            $user->save();
+        });
+
+        Event::trigger(\yii\web\User::className(), \yii\web\User::EVENT_AFTER_LOGIN);
+
 
 
         if (!Yii::$app->user->isGuest) {
@@ -249,5 +264,7 @@ class SiteController extends Controller
     {
         return $this->render('request');
     }
+
+
 
 }

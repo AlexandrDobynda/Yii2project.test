@@ -7,6 +7,8 @@ $this->title = 'My Yii Application';
 $userId = Yii::$app->user->identity->id;
 $cookies = Yii::$app->request->cookies;
 
+$message = $cookies->getValue('mess');
+
 if (!isset($cookies['count' . $userId])) {
     $cookies = Yii::$app->response->cookies;
     $cookies->add(new \yii\web\Cookie([
@@ -22,13 +24,19 @@ if (!isset($cookies['count' . $userId])) {
         'name' => 'count' . $userId,
         'value' => $counter,
     ]));
+
+
+    $lastLogin = Yii::$app->user->identity->lastLogin;
+
 }
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
 
+        <h1> Your last login was: <?= date('d.m.y H:i' , $lastLogin )?> </h1> <br/>
         <h1>You visited this page <?=$counter?> times.</h1> <br/>
+
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
 
