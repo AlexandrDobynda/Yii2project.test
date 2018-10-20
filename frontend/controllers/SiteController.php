@@ -95,19 +95,12 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-
-
         Event::on(\yii\web\User::className(), \yii\web\User::EVENT_AFTER_LOGIN, function (){
 
-//            $user = User::findOne(Yii::$app->user->getId());
-            $user = User::findOne(1);
+            $user = User::findOne(Yii::$app->user->getId());
             $user->lastLogin = time();
             $user->save();
         });
-
-        Event::trigger(\yii\web\User::className(), \yii\web\User::EVENT_AFTER_LOGIN);
-
-
 
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();

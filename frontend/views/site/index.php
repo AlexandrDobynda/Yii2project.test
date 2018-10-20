@@ -1,13 +1,14 @@
 <?php
 
+use common\models\User;
+
+
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
 
 $userId = Yii::$app->user->identity->id;
 $cookies = Yii::$app->request->cookies;
-
-$message = $cookies->getValue('mess');
 
 if (!isset($cookies['count' . $userId])) {
     $cookies = Yii::$app->response->cookies;
@@ -26,7 +27,10 @@ if (!isset($cookies['count' . $userId])) {
     ]));
 
 
-    $lastLogin = Yii::$app->user->identity->lastLogin;
+    $lastLogin = User::find()
+        ->select(['lastLogin'])
+        ->where(['id' => $userId])
+        ->one();
 
 }
 ?>
@@ -34,7 +38,7 @@ if (!isset($cookies['count' . $userId])) {
 
     <div class="jumbotron">
 
-        <h1> Your last login was: <?= date('d.m.y H:i' , $lastLogin )?> </h1> <br/>
+        <h1> Your last login was: <?= date('d.m.y H:i' , $lastLogin->lastLogin )?> </h1> <br/>
         <h1>You visited this page <?=$counter?> times.</h1> <br/>
 
 
