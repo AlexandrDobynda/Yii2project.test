@@ -30,11 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'film_name',
+            'name_length',
             'producer_id',
             'year',
             'created_at',
             'updated_at',
             'author',
+
         ],
     ]) ?>
 

@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
+use yii\behaviors\AttributeBehavior;
 use \yii\db\ActiveRecord;
 
 
@@ -20,6 +21,7 @@ use \yii\db\ActiveRecord;
  * @property string author
  * @property string created_at
  * @property string updated_at
+ * @property int name_length
  */
 class Film extends \yii\db\ActiveRecord
 {
@@ -37,10 +39,23 @@ class Film extends \yii\db\ActiveRecord
 
                 ],
             ],
+
             [
               'class' => BlameableBehavior::className(),
               'createdByAttribute' => 'author',
               'updatedByAttribute' => null,
+            ],
+
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => 'name_length',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'name_length',
+                ],
+                'value' => function ($event) {
+
+                    return strlen($event->sender->film_name);
+                },
             ],
         ];
     }
@@ -57,11 +72,9 @@ class Film extends \yii\db\ActiveRecord
     {
         return [
             [['film_name', 'year'], 'required'],
-            [['producer_id'], 'integer'],
+            [['producer_id', 'name_length', 'created_at','updated_at'], 'integer'],
             [['film_name'], 'string', 'max' => 50],
             [['year'], 'string', 'max' => 255],
-            [['created_at'], 'integer'],
-            [['updated_at'], 'integer'],
             [['author'], 'string'],
 
         ];
@@ -80,6 +93,7 @@ class Film extends \yii\db\ActiveRecord
             'created_at' => 'Created at',
             'updated_at' => 'Updated at',
             'author' => 'Author',
+            'name_length' => 'Name Length',
         ];
     }
 
