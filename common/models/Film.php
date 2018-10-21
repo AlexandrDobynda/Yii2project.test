@@ -4,7 +4,9 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
 use \yii\db\ActiveRecord;
+
 
 
 
@@ -29,13 +31,16 @@ class Film extends \yii\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::className(),
-//
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
 
                 ],
-
+            ],
+            [
+              'class' => BlameableBehavior::className(),
+              'createdByAttribute' => 'author',
+              'updatedByAttribute' => null,
             ],
         ];
     }
