@@ -3,11 +3,11 @@
 namespace common\models;
 
 use Yii;
-use yii\behaviors\TimestampBehavior;
-use yii\behaviors\BlameableBehavior;
+use yii\behaviors\MyTimestampBehavior;
 use yii\behaviors\MyBlambleBehavior;
 use yii\behaviors\AttributeBehavior;
 use \yii\db\ActiveRecord;
+
 
 
 
@@ -33,11 +33,10 @@ class Film extends \yii\db\ActiveRecord
     {
         return [
             [
-                'class' => TimestampBehavior::className(),
+                'class' => MyTimestampBehavior::className(),
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
                     ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-
                 ],
             ],
 
@@ -73,9 +72,9 @@ class Film extends \yii\db\ActiveRecord
     {
         return [
             [['film_name', 'year'], 'required'],
-            [['producer_id', 'name_length', 'created_at','updated_at'], 'integer'],
+            [['producer_id', 'name_length'], 'integer'],
             [['film_name'], 'string', 'max' => 50],
-            [['year'], 'string', 'max' => 255],
+            [['year','created_at', 'updated_at'], 'string', 'max' => 255],
             [['author'], 'string'],
 
         ];

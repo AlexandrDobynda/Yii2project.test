@@ -21,6 +21,7 @@ Thumbs.db
 
 # composer vendor dir
 /vendor
+!yiisoft/yii2/behaviors/
 # cubrid install dir
 /cubrid
 
@@ -46,3 +47,4 @@ phpunit.phar
 # NPM packages
 /node_modules
 .env
+
