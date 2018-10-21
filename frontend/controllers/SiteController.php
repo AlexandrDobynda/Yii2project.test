@@ -97,7 +97,7 @@ class SiteController extends Controller
     {
 //        Event::on(\yii\web\User::className(), \yii\web\User::EVENT_AFTER_LOGIN, function ($event) {
 //
-//            $user = User::findOne(Yii::$app->user->getId());
+//            $user = User::findOne($event->sender->identity->id);
 //            $user->lastLogin = time();
 //            $user->save();
 //        });
