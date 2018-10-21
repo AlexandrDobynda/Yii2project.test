@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
+use yii\behaviors\MyBlambleBehavior;
 use yii\behaviors\AttributeBehavior;
 use \yii\db\ActiveRecord;
 
@@ -41,7 +42,7 @@ class Film extends \yii\db\ActiveRecord
             ],
 
             [
-              'class' => BlameableBehavior::className(),
+              'class' => MyBlambleBehavior::className(),
               'createdByAttribute' => 'author',
               'updatedByAttribute' => null,
             ],
