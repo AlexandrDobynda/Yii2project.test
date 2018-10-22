@@ -3,9 +3,9 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\MyNameLengthBehavior;
 use yii\behaviors\MyTimestampBehavior;
 use yii\behaviors\MyBlambleBehavior;
-use yii\behaviors\AttributeBehavior;
 use \yii\db\ActiveRecord;
 
 
@@ -47,15 +47,7 @@ class Film extends \yii\db\ActiveRecord
             ],
 
             [
-                'class' => AttributeBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => 'name_length',
-                    ActiveRecord::EVENT_BEFORE_UPDATE => 'name_length',
-                ],
-                'value' => function ($event) {
-
-                    return strlen($event->sender->film_name);
-                },
+                'class' => MyNameLengthBehavior::className(),
             ],
         ];
     }
