@@ -48,6 +48,8 @@ class Film extends \yii\db\ActiveRecord
 
             [
                 'class' => MyNameLengthBehavior::className(),
+                'name' => 'film_name',
+                'length' => 'name_length',
             ],
         ];
     }

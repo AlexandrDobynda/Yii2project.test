@@ -14,6 +14,10 @@ use yii\db\ActiveRecord;
 class MyNameLengthBehavior extends Behavior
 
 {
+    public $name;
+    public $length;
+
+
     public function events()
     {
         return [
@@ -24,8 +28,9 @@ class MyNameLengthBehavior extends Behavior
 
     public function getFilmNameLength($event)
     {
-        $this->owner->name_length = strlen($event->sender->film_name);
+        $name = $this->name;
+        $length = $this->length;
+
+        $this->owner->$length = mb_strlen($event->sender->$name);
     }
-
-
 }
